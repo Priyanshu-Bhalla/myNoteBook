@@ -13,16 +13,17 @@ router.post('/createuser', [
     body('email', 'Enter Valid Email').isEmail(),
     body('password', 'Enter Valid Password').isLength({ min: 5 }),
 ], async (req, res) => {
+    let success = false;
     // if there are errors then show the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ success, errors: errors.array() });
     }
     //throw error if 2 users have same email id
     try {
         let user = await User.findOne({ email: req.body.email });
         if (user) {
-            return res.status(400).json({ errors: 'Sorry the user with this email already exists' });
+            return res.status(400).json({ success, errors: 'Sorry the user with this email already exists' });
         }
         //else create user
         var salt = await bcrypt.genSalt(10);
@@ -39,7 +40,8 @@ router.post('/createuser', [
             }
         }
         const authenToken = jwt.sign(data, JWT_SECRET);
-        res.send({ authenToken });
+        success = true;
+        res.send({ success, authenToken });
     }
     catch (error) {
         console.error(error.message);
