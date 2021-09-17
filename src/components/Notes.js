@@ -3,13 +3,24 @@ import { useContext, useEffect, useRef } from 'react';
 import noteContext from '../context/notes/noteContext';
 import Notesitems from '../components/Notesitems';
 import Addnote from './Addnote';
-export default function Notes() {
+import { useHistory } from "react-router";
+export default function Notes(props) {
     const [note, setNote] = useState({ etitle: "", edescription: "", etag: "", id: "" });
+    let history = useHistory();
     const context = useContext(noteContext);
     const { notes, getnotes, updatenote } = context;
 
     useEffect(() => {
-        getnotes();
+        if (localStorage.getItem('token')) {
+            console.log(localStorage.getItem('token'))
+            getnotes();
+        }
+        else {
+            history.push("/login");
+            console.log(history)
+        }
+
+        //eslint-disable-next-line
     }, [])
     const ref = useRef(null)
     const refClose = useRef()
@@ -21,6 +32,7 @@ export default function Notes() {
         console.log('updating .....');
         updatenote(note.id, note.etitle, note.edescription, note.etag);
         refClose.current.click();
+        props.showAlert("Notes Have Been Updated Successfully", "success")
     }
     const handleOnChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value })
@@ -28,7 +40,7 @@ export default function Notes() {
 
     return (
         <>
-            <Addnote />
+            <Addnote showAlert={props.showAlert} />
 
             <button type="button" ref={ref} className="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal">
                 Launch demo modal
@@ -70,11 +82,11 @@ export default function Notes() {
             </div>
             <h1 className="my-3">Your Notes</h1>
 
-            <h2>{notes.length === 0 && 'No Notes are Added'}</h2>
+            <h2>{notes.length === 0 && 'Notes You Add Will Appear Here'}</h2>
 
             <div className="row my-3">
                 {notes.map((note) => {
-                    return <Notesitems key={note._id} note={note} updateNotes={updateNotes} />
+                    return <Notesitems key={note._id} note={note} updateNotes={updateNotes} showAlert={props.showAlert} />
                 })}
             </div>
         </>

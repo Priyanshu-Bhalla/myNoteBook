@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import LoginLogo from '../img/login.svg';
+import Wave from '../img/wave.svg';
+import '../CSS/LoginCss.css';
 
-export default function Login() {
+export default function Login(props) {
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     let history = useHistory();
     const handleSubmit = async (e) => {
@@ -21,34 +24,45 @@ export default function Login() {
         console.log(json)
         if (json.success) {
             //take the auth token and redirect
-            localStorage.setItem('token', json.authenToken)
+            localStorage.setItem('token', json.authenToken);
+            props.showAlert("You are logged in", "success");
             history.push('/');
         }
         else {
-            alert('please enter valid credentials');
+            props.showAlert("Invalid Credentials", "danger");
         }
     }
     const handleOnChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
+
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" name="email" onChange={handleOnChange} aria-describedby="emailHelp" />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+        <>
+            <h1 className="container mx-3 heading" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontFamily: "'DM Mono', monospace" }}>Welcome To MyNoteBook<i className="far fa-clipboard fa-sm mx-3"></i></h1>
+            <img src={Wave} alt="" className="svgup" style={{ marginLeft: "-300px", height: "100px", width: "86vw", marginTop: "60px" }} />
+            <div className="login">
+
+                <div><img src={LoginLogo} alt="img not found" className="login_img" /></div>
+                <div className="login_card">
+                    <h3 >Login To Your Account</h3>
+                    <form onSubmit={handleSubmit} className="my-3">
+                        <div className="form-group">
+
+                            <input type="email" className="form-control" id="exampleInputEmail1" name="email" onChange={handleOnChange} aria-describedby="emailHelp" placeholder="Email" />
+                            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div className="form-group">
+
+                            <input type="password" className="form-control" name="password" onChange={handleOnChange} id="exampleInputPassword1" placeholder="Password" />
+
+                        </div>
+
+                        <button type="submit" className="btn btn-primary btn_login">Login In</button>
+                    </form>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control" name="password" onChange={handleOnChange} id="exampleInputPassword1" />
-                </div>
-                <div className="form-group form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-        </div>
+
+            </div>
+
+        </>
     )
 }
