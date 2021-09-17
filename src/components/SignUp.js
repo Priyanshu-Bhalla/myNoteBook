@@ -42,8 +42,8 @@ export default function SignUp(props) {
     }
     return (
         <>
-            <h1 className="container mx-3 heading" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>Welcome To MyNoteBook<i className="far fa-clipboard fa-sm mx-3"></i></h1>
-
+            <h1 className="headingS" >Welcome To myNoteBook.</h1>
+            <p className="subtitle ">Your Notes are safe with us.</p>
             <div className="Signin">
                 <div><img src={SignLogo} alt="img not found" className="signin_img" /></div>
                 <div className="sign_card">

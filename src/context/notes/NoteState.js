@@ -42,6 +42,7 @@ const NoteState = (props) => {
 
     //deleting a note
     const deletenote = async (id) => {
+        window.confirm("Are You sure You want to Delete this Note? ");
         //Api call for deleting a note
         const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
             method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
@@ -53,6 +54,7 @@ const NoteState = (props) => {
         });
         const json = await response.json();
         console.log(json);
+
         const newNotes = notes.filter((note) => { return note._id !== id });//this is gonna be the notes after deletion
         setNotes(newNotes);
     }

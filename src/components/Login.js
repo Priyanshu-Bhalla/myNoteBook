@@ -38,8 +38,10 @@ export default function Login(props) {
 
     return (
         <>
-            <h1 className="container mx-3 heading" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", fontFamily: "'DM Mono', monospace" }}>Welcome To MyNoteBook<i className="far fa-clipboard fa-sm mx-3"></i></h1>
-            <img src={Wave} alt="" className="svgup" style={{ marginLeft: "-300px", height: "100px", width: "86vw", marginTop: "60px" }} />
+            <h1 className=" headingL" >Welcome To myNoteBook.</h1>
+            <p className="subtitle ">Your Notes are safe with us.</p>
+
+            <img src={Wave} alt="" className="svgup" style={{ marginLeft: "-300px", height: "100px", width: "86vw", marginTop: "20px" }} />
             <div className="login">
 
                 <div><img src={LoginLogo} alt="img not found" className="login_img" /></div>

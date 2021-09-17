@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
+:root {
+  --bg-color: white;
+  --typewriterSpeed: 3.5s;
+  --typewriterCharacters: 22;
+}
 body{
   font-family: sans-serif;
 }
@@ -8,4 +13,46 @@ body{
 }
 .fa-icon:hover{
   transform: scale(1.1);
+}
+.uppernote{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.addnote_img{
+  height: 35vh;
+  width: 35vw;
+}
+.cardA{
+  display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* align-items: center; */
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset; */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    border: 1px solid white;
+    border-radius: 15px;
+    width: 450px;
+   
+}
+.btn_add{
+  background-color: #5b52fc;
+  color: white;
+  cursor: pointer;
+}
+.btn_add:hover{
+  background-color: #5b52fc;
+  color: white;
+  cursor: pointer;
+}
+.cardN{
+  border: 1px solid white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+@media (max-width: 768px){
+  .addnote_img{
+    display: none;
+  }
 }

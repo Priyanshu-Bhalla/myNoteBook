@@ -82,7 +82,7 @@ export default function Notes(props) {
             </div>
             <h1 className="my-3">Your Notes</h1>
 
-            <h2>{notes.length === 0 && 'Notes You Add Will Appear Here'}</h2>
+            <h2 className="text-muted">{notes.length === 0 && 'Notes You Add Will Appear Here'}</h2>
 
             <div className="row my-3">
                 {notes.map((note) => {
