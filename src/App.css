@@ -6,6 +6,7 @@
 }
 body{
   font-family: sans-serif;
+  overflow-x: hidden;
 }
 .fa-icon{
   cursor: pointer;
@@ -51,8 +52,117 @@ body{
   border: 1px solid white;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
+.about_upper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    
+    
+ 
+ 
+}
+.wrapper{
+  display: inline-flex;
+  font-weight: bolder;
+  font-size: clamp(1rem, 2.5vw + 1rem, 3rem);
+  /* border: 1px solid red; */
+
+}
+
+.wrapper .dynamic_txts{
+margin-left: -30px;
+/* border: 1px solid red; */
+height:  73px;
+line-height: 73px;
+/* background-color: aqua; */
+overflow: hidden;
+}
+.dynamic_txts li{
+  list-style: none;
+  color: #5b52fc;
+  top: 0;
+  position: relative;
+  animation: slideUp 6s steps(4) infinite;
+}
+
+.dynamic_txts li span{
+  position: relative;
+}
+.dynamic_txts li span::after{
+  content: "";
+  left: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-left: 2px solid #5b52fc ;
+  background-color:white;
+  
+  animation: typing 1.5s steps(10) infinite;
+}
+.subtitleA {
+  margin-top: -10px;
+  color: hsl(0 0% 0% / 0.7);
+  font-size: clamp(0.3rem, 1.8vw + 0.3rem, 1.8rem);
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: fadeInUp 2s ease 5.8s forwards;
+}
+.about_lower{
+  margin-top: 30px;
+  display: flex;
+}
+.about_img{
+  height: 50vh;
+  width: 45vw;
+ 
+}
+.about_details{
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: fadeInUp 2s ease 7s forwards;
+}
+.about_details p {
+ font-size: large;
+ 
+}
+.about_details p span{
+ color: #5b52fc;
+ font-weight: bolder;
+}
+.btn_about{
+  background-color: #5b52fc;
+
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typing {
+  100%{
+    left: 100%;
+    margin: 0 -35px 0 35px;
+  }
+  
+}@keyframes slideUp {
+  100%{
+   top: -290px;
+  }
+  
+}
 @media (max-width: 768px){
   .addnote_img{
+    display: none;
+  }
+  .about_img{
     display: none;
   }
 }
